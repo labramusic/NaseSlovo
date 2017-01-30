@@ -1,5 +1,0 @@
-﻿CREATE TABLE [dbo].[Bilten]
-(
-	[BiltenID] INT NOT NULL PRIMARY KEY IDENTITY(1,1),
-	[Datum] DATE NOT NULL UNIQUE
-)
