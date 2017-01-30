@@ -1,0 +1,118 @@
+﻿
+@{
+    ViewBag.Title = "Top";
+}
+
+<div class="container-fluid text-center">
+    <div class="row content">
+        <div class="col-sm-2 sidenav sideleft">
+            <div class="side-container">
+                <p class="side-title"><i class="fa fa-pencil-square" aria-hidden="true"></i> Autori</p>
+                <a href="#"><p class="side-item">JD Sallinger</p></a>
+                <a href="#"><p class="side-item side-bottom">Vidi sve pretplate...</p></a>
+            </div>
+
+            <div class="side-container">
+                <p class="side-title"><i class="fa fa-bookmark" aria-hidden="true"></i> Teme</p>
+                <a href="#"><p class="side-item">Rat</p></a>
+                <a href="#"><p class="side-item">Ljubav</p></a>
+                <a href="#"><p class="side-item side-bottom">Vidi sve teme...</p></a>
+            </div>
+
+            <div class="side-container">
+                <p class="side-title"><i class="fa fa-book" aria-hidden="true"></i> Vrste</p>
+                <a href="#"><p class="side-item">Poezija </p></a>
+                <a href="#"><p class="side-item">Proza </p></a>
+                <a href="#"><p class="side-item side-bottom">Vidi sve vrste...</p></a>
+            </div>
+
+        </div>
+        <div class="col-sm-8 page-content">
+            <!--Ovdje ubaciti for petlju i povući članke iz baze-->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-default panel-horizontal">
+                        <div class="panel-body">
+                            <div>
+                                <img class="profile-small" src="https://placekitten.com/50/50">
+                                <a href="#">Darko Žubrinić</a>
+                                <span class="date">prije 17 dana</span>
+                            </div>
+                            <div>
+                                <a class="panel-title" href="#">Matematika 1 - Funkcije</a>
+                            </div>
+                            <button type="button" class="btn btn-outline btn-primary">Matematika</button>
+                            <button type="button" class="btn btn-outline btn-primary">Edukacija</button>
+                            <hr>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi hendrerit blandit nulla sit amet tristique. Cras interdum dignissim mi, malesuada ullamcorper purus. Vivamus arcu ex, tristique a tellus sed, blandit fermentum tortor. Cras semper leo sit amet vehicula ullamcorper. Suspendisse elementum sagittis auctor. Suspendisse sagittis volutpat odio consectetur rhoncus. Vivamus rhoncus ipsum dui, at elementum nulla matti...
+                            <a href="#">Procitaj clanak</a>
+
+                        </div>
+                        <div class="panel-footer">
+                            <span class="score">5/5</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="col-sm-2 sidenav sideright">
+            <div class="side-fixed-off">
+
+                <div class="side-container">
+                    <p class="side-title">Izdvojeno</p>
+
+                    <div class="side-author">Autor: Darko Žubrinić</div>
+                    <div class="side-post-title">Naslov: Matematika 1</div>
+                    <div class="side-score">Ocjena: 5/5</div>
+                    <a href="#"><p class="side-item side-bottom">Vidi izdvojene članke...</p></a>
+
+
+                </div>
+
+
+
+                <div class="side-container">
+                    <p class="side-title"><i class="fa fa-bookmark" aria-hidden="true"></i> Top teme</p>
+                    <a href="#"><p class="side-item">Krimi</p></a>
+                    <a href="#"><p class="side-item">Drama</p></a>
+                    <a href="#"><p class="side-item">Roman</p></a>
+                    <a href="#"><p class="side-item side-bottom">Vidi sve teme...</p></a>
+                </div>
+
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<script type="text/javascript">
+
+  var element_position = $('.sideright').offset().top;
+  var is_fixed = false;
+  $('#close-not').click(function () {
+    $('.navbar-notification').remove();
+  });
+
+  $(window).on('scroll', function() {
+      var y_scroll_pos = window.pageYOffset;
+      var scroll_pos_test = element_position;
+
+      if(y_scroll_pos > scroll_pos_test && is_fixed == false) {
+
+
+          $('.side-fixed-off').attr('class','side-fixed');
+          is_fixed = true;
+
+      }
+      if(y_scroll_pos < scroll_pos_test && is_fixed == true) {
+          $('.side-fixed').attr('class','side-fixed-off');
+          is_fixed = false;
+      }
+  });
+
+</script>
+

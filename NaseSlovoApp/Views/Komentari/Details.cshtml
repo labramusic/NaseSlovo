@@ -1,0 +1,50 @@
+﻿@model NaseSlovoApp.Models.Komentar
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Komentar</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Sadrzaj)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sadrzaj)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DatumVrijeme)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DatumVrijeme)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Korisnik.Ime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Korisnik.Ime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tekst.Sadrzaj)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tekst.Sadrzaj)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.KomentarID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

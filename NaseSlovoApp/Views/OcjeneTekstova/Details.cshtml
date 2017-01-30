@@ -1,0 +1,42 @@
+﻿@model NaseSlovoApp.Models.OcjenaTeksta
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>OcjenaTeksta</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Ocjena)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ocjena)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Korisnik.Ime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Korisnik.Ime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tekst.Sadrzaj)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tekst.Sadrzaj)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

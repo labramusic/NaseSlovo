@@ -1,0 +1,70 @@
+﻿@model IEnumerable<NaseSlovoApp.Models.Tema>
+
+@{
+    ViewBag.Title = "ThemeSub";
+}
+<h2>Pretplate na temu</h2>
+<form>
+    <fieldset>
+        <legend>Trenutno ste pretplaćeni na:</legend>
+        <div class="col-sm-8 page-content">
+            <!--Ovdje ubaciti for petlju i povući članke iz baze-->
+
+            @foreach (var item in Model.ToList())
+            {
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel panel-default panel-horizontal">
+                            <div class="panel-body">
+
+                                <div>
+                                    <a class="panel-title" href="#">@Html.DisplayFor(modelItem => item.Naziv)</a>
+                                </div>
+                                @if (ViewBag.pret.Contains(item.TemaID))
+                                {
+                                    using (Html.BeginForm("CancelTheme", "Subscription", FormMethod.Post, new { id = "Form Name" }))
+                                    {
+
+                                        @Html.AntiForgeryToken()
+                                        <input type="hidden" name="TemaID" value="@item.TemaID"></input>
+                                        <div class="form-horizontal">
+                                            <div class="form-group">
+                                                <div class="col-md-offset-2 col-md-10">
+                                                    <input type="submit" value="Otkaži pretplatu" class="btn btn-outline btn-primary" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                }
+                                else
+                                {
+                                    using (Html.BeginForm())
+                                    {
+
+                                        @Html.AntiForgeryToken()
+                                        <input type="hidden" name="TemaID" value="@item.TemaID"></input>
+                                        <div class="form-horizontal">
+                                            <div class="form-group">
+                                                <div class="col-md-offset-2 col-md-10">
+                                                    <input type="submit" value="Pretplati se" class="btn btn-outline btn-primary" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                }
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            }
+            <!--Poboljsati footer-->
+            <footer>
+                <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            </footer>
+
+
+        </div>
+
+    </fieldset>
+</form>

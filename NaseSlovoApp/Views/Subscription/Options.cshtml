@@ -1,0 +1,78 @@
+﻿@model NaseSlovoApp.Models.Korisnik
+@{
+    ViewBag.Title = "Options";
+}
+
+<h2>Postavke</h2>
+<!--Ubaciti podatke iz baze-->
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Postavke</h4>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Ime, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+
+                @Html.TextBoxFor(model => model.Ime, new { @class = "form-control" })
+
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Prezime, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+
+                @Html.TextBoxFor(model => model.Prezime, new { @class = "form-control" })
+
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+
+                @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @readonly = "readonly" })
+
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Spol, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+
+                @Html.TextBoxFor(model => model.Spol, new { @class = "form-control" })
+
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Ažuriraj" class="btn btn-default" />
+            </div>
+        </div>
+
+    </div>
+}
+
+<br /> @if (ViewBag.role)
+{
+    <a href="@Url.Action("Membership", "Subscription")"><i class="fa fa-user-plus" aria-hidden="true"></i> Učlani se</a>
+}
+else
+{
+    if (ViewBag.isteklo)
+    {
+        <h2>Članarina je istekla!</h2>
+        <a href="@Url.Action("Membership", "Subscription")"><i class="fa fa-user-plus" aria-hidden="true"></i> Učlani se</a>
+    }
+    else
+    {
+        if (ViewBag.istek != null)
+        {
+        <div class="text-danger">Članarina vam ističe: @ViewBag.istek</div>
+        }
+        <a href="@Url.Action("Membership", "Subscription")"><i class="fa fa-user-plus" aria-hidden="true"></i> Produlji članstvo</a>
+    }
+}
+
+    @Html.AntiForgeryToken()
+    @Html.Hidden("KorisnikID", Html.DisplayFor(model => model.KorisnikID)) <br />
+    @Html.ActionLink("Izbriši profil", "Delete", "Korisnici",new { id = Model.KorisnikID },null)

@@ -1,0 +1,86 @@
+﻿@model NaseSlovoApp.Models.Tekst
+
+@{
+    ViewBag.Title = "Novi tekst";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@{ 
+    string tekst = null;
+    if (TempData["tekst"] != null)
+    {
+        tekst =(string) TempData["tekst"];
+    }
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Tekst</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Sadrzaj, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @if (tekst != null)
+                {
+                    <textarea class = "form-control">@tekst.ToString()</textarea>
+                }
+                else
+                {
+                @Html.TextAreaFor(model => model.Sadrzaj,10,100, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Sadrzaj, "", new { @class = "text-danger" })
+                }
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Naslov, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Naslov, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Naslov, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TemaID, "TemaID", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("TemaID", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.TemaID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.VrstaID, "VrstaID", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("VrstaID", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.VrstaID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Pošalji" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @using (Html.BeginForm("Upload", "Tekstovi", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <input type="File" name="file" id="file" value="Izaberite datoteku" />
+        <button type="submit">Upload</button>
+    }
+</div>
+
+<div>
+    @Html.ActionLink("Nazad na tekstove", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

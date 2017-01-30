@@ -1,0 +1,75 @@
+﻿@model IEnumerable<NaseSlovoApp.Models.Tekst>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Sadrzaj)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Naslov)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DatumVrijeme)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SrednjaOcjena)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Bilten.BiltenID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Korisnik.Ime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tema.Naziv)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Vrsta.Naziv)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sadrzaj)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Naslov)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DatumVrijeme)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SrednjaOcjena)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Bilten.BiltenID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Korisnik.Ime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tema.Naziv)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Vrsta.Naziv)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.TekstID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.TekstID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.TekstID })
+        </td>
+    </tr>
+}
+
+</table>

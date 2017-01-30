@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a1b63dff189c4cd797dd6c295b797e65" Name="Diagram1">
+        <EntityTypeShape EntityType="Database1Model.Bilten" Width="1.5" PointX="3" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Database1Model.Knjiga" Width="1.5" PointX="5.25" PointY="27.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Database1Model.Komentar" Width="1.5" PointX="3" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Database1Model.Korisnik" Width="1.5" PointX="0.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Database1Model.OcjenaKnjige" Width="1.5" PointX="7.5" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Database1Model.OcjenaTeksta" Width="1.5" PointX="3" PointY="15" IsExpanded="true" />
+        <AssociationConnector Association="Database1Model.OcjenaKnjigeKnjiga" ManuallyRouted="false" />
+        <AssociationConnector Association="Database1Model.KomentarKorisnik" ManuallyRouted="false" />
+        <AssociationConnector Association="Database1Model.OcjenaKnjigeKorisnik" ManuallyRouted="false" />
+        <AssociationConnector Association="Database1Model.OcjenaTekstaKorisnik" ManuallyRouted="false" />
+        <AssociationConnector Association="Database1Model.AutorPretplata" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="Database1Model.Tekst" Width="1.5" PointX="5.25" PointY="14" />
+        <EntityTypeShape EntityType="Database1Model.Tema" Width="1.5" PointX="3" PointY="22.5" />
+        <EntityTypeShape EntityType="Database1Model.Vrsta" Width="1.5" PointX="3" PointY="5.75" />
+        <AssociationConnector Association="Database1Model.TekstBilten" />
+        <AssociationConnector Association="Database1Model.KnjigaVrsta" />
+        <AssociationConnector Association="Database1Model.KomentarTekst" />
+        <AssociationConnector Association="Database1Model.TekstKorisnik" />
+        <AssociationConnector Association="Database1Model.OcjenaTekstaTekst" />
+        <AssociationConnector Association="Database1Model.TekstTema" />
+        <AssociationConnector Association="Database1Model.TekstVrsta" />
+        <AssociationConnector Association="Database1Model.TemaPretplata" />
+        <AssociationConnector Association="Database1Model.VrstaPretplata" />
+        <EntityTypeShape EntityType="Database1Model.Clanstvo" Width="1.5" PointX="3" PointY="8.75" />
+        <AssociationConnector Association="Database1Model.ClanstvoKorisnik" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

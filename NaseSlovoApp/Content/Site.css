@@ -1,0 +1,265 @@
+﻿@import url('https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900,900i');
+
+body.article-editor {
+    font-size:1em;
+    font-family:'Roboto', serif;
+    font-weight:300;
+}
+
+body.article-editor .illustration {
+    margin-right: 50px;
+    margin-left: 50px;
+    margin-bottom: 50px;
+}
+
+body.article-editor ul {
+    overflow: hidden;
+}
+
+body.article-editor h1, h2 {
+    color: #8A4A33;
+    padding-top: 10px;
+}
+
+.image-illustration {
+    background-color: white;
+}
+
+.embed-240p {
+    max-width: 426px;
+    max-height: 240px;
+    margin:0 auto;
+}
+
+.embed-360p {
+    max-width: 640px;
+    max-height: 360px;
+    margin:0 auto;
+}
+
+.embed-480p {
+    max-width: 854px;
+    max-height: 480px;
+    margin:0 auto;
+}
+
+.embed-720p {
+    max-width: 1280px;
+    max-height: 720px;
+    margin:0 auto;
+}
+
+.embed-1080p {
+    max-width: 1920px;
+    max-height: 1080px;
+    margin:0 auto;
+}
+
+.navbar {
+  margin-bottom: 0;
+  border-radius: 0;
+}
+
+.navbar-red {
+  border-color: #c72c2c;
+  background-color: #b71c1c;
+}
+
+.navbar-red a{
+  color: white;
+}
+
+.navbar-red .nav a:hover, .active {
+  background-color: #c62828;  
+}
+
+.navbar-red .input-group , .navbar-red button{
+  padding-top: 7px;
+}
+
+.row.content {height: 450px}
+    
+/* Set gray background color and 100% height */
+.sidenav {
+  padding-top: 20px;
+  background-color: #fcf6f6;
+  height: 100%;
+}
+    
+/* Set black background color, white text and some padding */
+footer {
+  background-color: #555;
+  color: white;
+  padding: 15px;
+}
+    
+/* On small screens, set height to 'auto' for sidenav and grid */
+@media screen and (max-width: 767px) {
+  .sidenav {
+    height: auto;
+    padding: 15px;
+  }
+  .row.content {height:auto;}
+}
+
+.page-content {
+  padding-top: 20px;
+}
+
+.profile-small {
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+}
+
+/*
+ * To see in action, go to http://jsfiddle.net/seydoggy/9jv5e8d1/
+ */
+.panel.panel-horizontal {
+    display:table;
+    width:100%;
+}
+.panel.panel-horizontal > .panel-heading, .panel.panel-horizontal > .panel-body, .panel.panel-horizontal > .panel-footer {
+    display:table-cell;
+}
+.panel.panel-horizontal > .panel-heading, .panel.panel-horizontal > .panel-footer {
+    width: 25%;
+    border:0;
+    vertical-align: middle;
+}
+.panel.panel-horizontal > .panel-heading {
+    border-right: 1px solid #ddd;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 4px;
+}
+.panel.panel-horizontal > .panel-footer {
+    border-left: 1px solid #ddd;
+    border-top-left-radius: 0;
+    border-bottom-right-radius: 4px;
+    text-align: center;
+    background-color: inherit;
+    width: auto;
+}
+
+.panel {
+  text-align: left;
+}
+
+.panel-title {
+  font-size: 30px;
+}
+.panel-title:hover, .panel-title:visited, .panel-title:active {
+  text-decoration: none;
+}
+
+.btn-outline {
+  background-color: white;
+  color: black;
+  border-color: black;  
+}
+
+.score {
+  font-size: 35px;
+  border-radius: 50%;
+  padding: 20px;
+  border: 2px solid #b71c1c;
+}
+
+hr {
+  margin-bottom: 5px;
+  margin-top: 10px;
+}
+
+.date {
+  font-size: 10px;
+  color: #a4a4a4;
+}
+
+.side-item {
+  margin: 0;
+}
+
+.side-title {
+  margin-bottom: 5px;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.sideleft {
+  text-align: left;
+  padding-right: 0;
+}
+
+.sideleft a {
+  text-decoration: none;
+}
+
+.sideright {
+  text-align: left;
+}
+
+.sideright a {
+  text-decoration: none;
+}
+.side-container {
+  background-color: white;
+  border-radius: 2px;
+  padding: 10px;
+  margin-bottom: 10px;
+  margin-right: 10px;
+}
+
+.side-container a {
+  color: #000;
+}
+.side-item:hover {
+  background-color: #f8f8f8;
+}
+.side-bottom {
+  border-top: 1px solid rgba(0,0,0,0.05);
+}
+
+.side-fixed {
+  position: fixed;
+  width: inherit;
+  padding-right: 20px;
+  top: 15px;
+}
+body {
+  background-color: #fcf6f6;
+  font-family: 'Libre Franklin', sans-serif;
+}
+.navbar-notification {
+  padding: 10px;
+  background-color: #1485CC;
+  text-align: center;
+}
+
+.btn-not, .btn-not:hover, .btn-not:visited, .btn-not:active {
+  text-decoration: none;
+  color: white;
+  cursor: pointer;
+}
+
+.btn-not:hover {
+  background-color: #0065AC;
+}
+
+.btn-not {
+  background-color: #0475BC;
+  border: 1px solid #0065AC;
+  border-radius: 5px;
+  padding: 7px;
+  margin-left: 10px;
+}
+
+#close-not {
+  cursor: pointer;
+  color: #001726;
+  float: right;
+}
+
+#close-not:hover {
+  color: #0065AC;
+}
+
+#editor {overflow:scroll; height:300px; background-color:rebeccapurple}

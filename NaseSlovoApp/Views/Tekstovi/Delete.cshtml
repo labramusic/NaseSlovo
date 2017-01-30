@@ -1,0 +1,88 @@
+﻿@model NaseSlovoApp.Models.Tekst
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Brisanje teksta</h2>
+
+<h3>Jeste li sigurni da želite izbrisati ovaj tekst?</h3>
+<div>
+    <h4>Tekst</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Sadrzaj)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sadrzaj)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Naslov)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Naslov)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DatumVrijeme)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DatumVrijeme)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SrednjaOcjena)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SrednjaOcjena)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Bilten.BiltenID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Bilten.BiltenID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Korisnik.Ime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Korisnik.Ime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tema.Naziv)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tema.Naziv)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Vrsta.Naziv)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Vrsta.Naziv)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

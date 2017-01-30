@@ -1,0 +1,71 @@
+﻿@model IEnumerable<NaseSlovoApp.Models.Korisnik>
+
+@{
+    ViewBag.Title = "AuthorSub";
+}
+<h2>Pretplate na autora</h2>
+<form>
+    <fieldset>
+        <legend>Trenutno ste pretplaćeni na:</legend>
+        <div class="col-sm-8 page-content">
+            <!--Ovdje ubaciti for petlju i povući članke iz baze-->
+
+            @foreach (var item in Model.ToList())
+            {
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel panel-default panel-horizontal">
+                            <div class="panel-body">
+
+                                <div>
+                                    <a class="panel-title" href="#">@Html.DisplayFor(modelItem => item.Ime) @Html.DisplayFor(modelItem => item.Prezime)</a>
+                                </div>
+                                @if (ViewBag.pret.Contains(item.KorisnikID))
+                                {
+                                    using (Html.BeginForm("CancelAuthor", "Subscription", FormMethod.Post, new { id = "Form Name" }))
+                                    {
+
+                                        @Html.AntiForgeryToken()
+                                        <input type="hidden" name="KorisnikID" value="@item.KorisnikID"></input>
+                                        <div class="form-horizontal">
+                                            <div class="form-group">
+                                                <div class="col-md-offset-2 col-md-10">
+                                                    <input type="submit" value="Otkaži pretplatu" class="btn btn-outline btn-primary" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                }
+                                else
+                                {
+                                    using (Html.BeginForm())
+                                    {
+
+                                        @Html.AntiForgeryToken()
+                                        <input type="hidden" name="KorisnikID" value="@item.KorisnikID"></input>
+                                        <div class="form-horizontal">
+                                            <div class="form-group">
+                                                <div class="col-md-offset-2 col-md-10">
+                                                    <input type="submit" value="Pretplati se" class="btn btn-outline btn-primary" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                }
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            }
+            <!--Poboljsati footer-->
+            <footer>
+                <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            </footer>
+
+
+        </div>
+
+    </fieldset>
+</form>
+

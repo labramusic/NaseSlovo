@@ -1,0 +1,108 @@
+﻿@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    <li role="presentation" class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            Pretplate <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+            <li>
+                <a href="@Url.Action("AuthorSub", "Subscription")"><i class="fa fa-pencil-square" aria-hidden="true"></i> Autori</a>
+            </li>
+            <li>
+                <a href="@Url.Action("ThemeSub", "Subscription")"><i class="fa fa-bookmark" aria-hidden="true"></i> Teme</a>
+            </li>
+            <li>
+                <a href="@Url.Action("TypeSub", "Subscription")"><i class="fa fa-book" aria-hidden="true"></i> Vrste</a>
+            </li>
+        </ul>
+    </li>
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                @Html.ActionLink("Opcije", "Options", "Subscription", routeValues: null, htmlAttributes: new { title = "Manage" })
+            </li>
+            
+            <li role="presentation" class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                    Knjige <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li>@Html.ActionLink("Top ljestvica", "Top", "Knjige")</li>
+                    <li>@Html.ActionLink("Sve knjige", "Index", "Knjige")</li>
+                </ul>
+            </li>
+
+            @if (User.IsInRole("Urednik"))
+            {
+            <li role="presentation" class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                    Urednik <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a href="@Url.Action("Neobjavljeno", "Tekstovi")"><i class="fa fa-pencil-square" aria-hidden="true"></i> Neobjavljeni tekstovi</a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Clanovi", "Korisnici")"><i class="fa fa-bookmark" aria-hidden="true"></i> Popis članova</a>
+                    </li>
+                    @if (User.IsInRole("GlavniUrednik"))
+                    {
+                        <li class="divider"></li>
+                        <li>
+                            <a href="@Url.Action("UrediBilten", "Tekstovi")"><i class="fa fa-book" aria-hidden="true"></i> Uredi bilten</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Zbornik", "Tekstovi")"><i class="fa fa-book" aria-hidden="true"></i> Uredi zbornik</a>
+                        </li>
+                    }
+                </ul>
+            </li>
+            }
+            
+            @if (User.IsInRole("Lektor"))
+            {
+                <li role="presentation" class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        Lektor <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="@Url.Action("Neobjavljeno", "Tekstovi")"><i class="fa fa-pencil-square" aria-hidden="true"></i> Lektoriraj tekstove</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("UrediBiltenOdabrani", "Tekstovi")"><i class="fa fa-bookmark" aria-hidden="true"></i> Lektoriraj bilten</a>
+                        </li>
+                    </ul>
+                </li>
+            }
+            @if (User.IsInRole("GrafickiUrednik"))
+            {
+                <li role="presentation" class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        Grafički urednik <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="@Url.Action("UrediBiltenOdabrani", "Tekstovi")"><i class="fa fa-pencil-square" aria-hidden="true"></i> Uredi bilten</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("PostaviBilten", "Tekstovi")"><i class="fa fa-pencil-square" aria-hidden="true"></i> Postavi bilten</a>
+                        </li>
+                    </ul>
+                </li>
+            }
+            <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+        </ul>
+    }
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li>@Html.ActionLink("Registriraj se", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+        <li>@Html.ActionLink("Prijavi se", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+    </ul>
+}

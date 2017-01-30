@@ -1,0 +1,51 @@
+﻿@model IEnumerable<NaseSlovoApp.Models.Komentar>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Sadrzaj)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DatumVrijeme)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Korisnik.Ime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tekst.Sadrzaj)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sadrzaj)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DatumVrijeme)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Korisnik.Ime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tekst.Sadrzaj)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.KomentarID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.KomentarID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.KomentarID })
+        </td>
+    </tr>
+}
+
+</table>

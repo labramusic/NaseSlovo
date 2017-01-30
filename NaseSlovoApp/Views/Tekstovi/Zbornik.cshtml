@@ -1,0 +1,81 @@
+﻿@model IEnumerable<NaseSlovoApp.Models.Tekst>
+
+@{
+    ViewBag.Title = "Zbornik";
+}
+
+<div class="container-fluid text-center">
+        <div class="col-sm-8 page-content">
+            <!--Ovdje ubaciti for petlju i povući članke iz baze-->
+
+            @foreach (var item in Model)
+                {
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="panel panel-default panel-horizontal">
+                                <div class="panel-body">
+                                    <div>
+                                        <img class="profile-small" src="https://placekitten.com/60/50">
+                                        @Html.ActionLink(item.Korisnik.Ime+" "+item.Korisnik.Prezime, "Details", "Korisnici", new { id = item.Korisnik.KorisnikID }, null)
+                                        <span class="date">@Html.DisplayFor(modelItem => item.DatumVrijeme)</span>
+                                    </div>
+                                    <div>
+                                        <a class="panel-title" href="#">@Html.DisplayFor(modelItem => item.Naslov)</a>
+                                    </div>
+                                    <button type="button" class="btn btn-outline btn-primary">@Html.DisplayFor(modelItem => item.Tema.Naziv)</button>
+                                    <button type="button" class="btn btn-outline btn-primary">@Html.DisplayFor(modelItem => item.Vrsta.Naziv)</button>
+                                    <hr>
+                                    @Html.DisplayFor(modelItem => item.Sadrzaj)
+                                    @Html.ActionLink("Procitaj tekst", "Details", "Tekstovi", new { id = item.TekstID }, null)
+                                </div>
+                                <div class="panel-footer">
+                                    <span class="score">@Html.DisplayFor(modelItem => item.SrednjaOcjena)/10</span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                }
+
+            <!-- potvrdi bilten -->
+            @if (User.IsInRole("GlavniUrednik"))
+            {
+                <p>Pošalji tekstove na obradu u tiskaru</p>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" class="btn btn-default" value="Pošalji" name="decision" />
+                    </div>
+                </div>
+            }
+
+
+    </div>
+</div>
+
+<script type="text/javascript">
+
+  var element_position = $('.sideright').offset().top;
+  var is_fixed = false;
+  $('#close-not').click(function () {
+    $('.navbar-notification').remove();
+  });
+
+  $(window).on('scroll', function() {
+      var y_scroll_pos = window.pageYOffset;
+      var scroll_pos_test = element_position;
+
+      if(y_scroll_pos > scroll_pos_test && is_fixed == false) {
+
+
+          $('.side-fixed-off').attr('class','side-fixed');
+          is_fixed = true;
+
+      }
+      if(y_scroll_pos < scroll_pos_test && is_fixed == true) {
+          $('.side-fixed').attr('class','side-fixed-off');
+          is_fixed = false;
+      }
+  });
+
+</script>
+

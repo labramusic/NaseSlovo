@@ -1,0 +1,974 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Database1Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AutorPretplata">
+          <Key>
+            <PropertyRef Name="KorisnikID" />
+            <PropertyRef Name="AutorID" />
+          </Key>
+          <Property Name="KorisnikID" Type="int" Nullable="false" />
+          <Property Name="AutorID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Bilten">
+          <Key>
+            <PropertyRef Name="BiltenID" />
+          </Key>
+          <Property Name="BiltenID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Datum" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Clanstvo">
+          <Key>
+            <PropertyRef Name="ClanstvoID" />
+            <PropertyRef Name="KorisnikID" />
+          </Key>
+          <Property Name="ClanstvoID" Type="int" Nullable="false" />
+          <Property Name="KorisnikID" Type="int" Nullable="false" />
+          <Property Name="DatumPlat" Type="date" Nullable="false" />
+          <Property Name="DatumIstek" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Knjiga">
+          <Key>
+            <PropertyRef Name="KnjigaID" />
+          </Key>
+          <Property Name="KnjigaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Autori" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Naslov" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Signatura" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Izdavac" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Godina" Type="smallint" Nullable="false" />
+          <Property Name="VrstaID" Type="int" Nullable="false" />
+          <Property Name="SrednjaOcjena" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Komentar">
+          <Key>
+            <PropertyRef Name="KomentarID" />
+          </Key>
+          <Property Name="KomentarID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KorisnikID" Type="int" Nullable="false" />
+          <Property Name="TekstID" Type="int" Nullable="false" />
+          <Property Name="Sadrzaj" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="DatumVrijeme" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Korisnik">
+          <Key>
+            <PropertyRef Name="KorisnikID" />
+          </Key>
+          <Property Name="KorisnikID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ime" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Prezime" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DatumRod" Type="date" />
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Spol" Type="nvarchar" MaxLength="50" />
+          <Property Name="KorisnickoIme" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Autor" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OcjenaKnjige">
+          <Key>
+            <PropertyRef Name="KnjigaID" />
+            <PropertyRef Name="KorisnikID" />
+          </Key>
+          <Property Name="KnjigaID" Type="int" Nullable="false" />
+          <Property Name="KorisnikID" Type="int" Nullable="false" />
+          <Property Name="Ocjena" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OcjenaTeksta">
+          <Key>
+            <PropertyRef Name="TekstID" />
+            <PropertyRef Name="KorisnikID" />
+          </Key>
+          <Property Name="TekstID" Type="int" Nullable="false" />
+          <Property Name="KorisnikID" Type="int" Nullable="false" />
+          <Property Name="Ocjena" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tekst">
+          <Key>
+            <PropertyRef Name="TekstID" />
+          </Key>
+          <Property Name="TekstID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Sadrzaj" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Naslov" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="AutorID" Type="int" Nullable="false" />
+          <Property Name="TemaID" Type="int" Nullable="false" />
+          <Property Name="VrstaID" Type="int" Nullable="false" />
+          <Property Name="DatumVrijeme" Type="datetime" Nullable="false" />
+          <Property Name="SrednjaOcjena" Type="float" Nullable="false" />
+          <Property Name="BiltenID" Type="int" />
+          <Property Name="Privatan" Type="bit" Nullable="false" />
+          <Property Name="Objavljen" Type="bit" Nullable="false" />
+          <Property Name="LektorovKomentar" Type="nvarchar(max)" />
+          <Property Name="Odabran" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tema">
+          <Key>
+            <PropertyRef Name="TemaID" />
+          </Key>
+          <Property Name="TemaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Naziv" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TemaPretplata">
+          <Key>
+            <PropertyRef Name="KorisnikID" />
+            <PropertyRef Name="TemaID" />
+          </Key>
+          <Property Name="KorisnikID" Type="int" Nullable="false" />
+          <Property Name="TemaID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Vrsta">
+          <Key>
+            <PropertyRef Name="VrstaID" />
+          </Key>
+          <Property Name="VrstaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Naziv" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VrstaPretplata">
+          <Key>
+            <PropertyRef Name="KorisnikID" />
+            <PropertyRef Name="VrstaID" />
+          </Key>
+          <Property Name="KorisnikID" Type="int" Nullable="false" />
+          <Property Name="VrstaID" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="ClanstvoKorisnik">
+          <End Role="Korisnik" Type="Self.Korisnik" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Clanstvo" Type="Self.Clanstvo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Korisnik">
+              <PropertyRef Name="KorisnikID" />
+            </Principal>
+            <Dependent Role="Clanstvo">
+              <PropertyRef Name="KorisnikID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="KnjigaVrsta">
+          <End Role="Vrsta" Type="Self.Vrsta" Multiplicity="1" />
+          <End Role="Knjiga" Type="Self.Knjiga" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vrsta">
+              <PropertyRef Name="VrstaID" />
+            </Principal>
+            <Dependent Role="Knjiga">
+              <PropertyRef Name="VrstaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="KomentarKorisnik">
+          <End Role="Korisnik" Type="Self.Korisnik" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Komentar" Type="Self.Komentar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Korisnik">
+              <PropertyRef Name="KorisnikID" />
+            </Principal>
+            <Dependent Role="Komentar">
+              <PropertyRef Name="KorisnikID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="KomentarTekst">
+          <End Role="Tekst" Type="Self.Tekst" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Komentar" Type="Self.Komentar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tekst">
+              <PropertyRef Name="TekstID" />
+            </Principal>
+            <Dependent Role="Komentar">
+              <PropertyRef Name="TekstID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="OcjenaKnjigeKnjiga">
+          <End Role="Knjiga" Type="Self.Knjiga" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="OcjenaKnjige" Type="Self.OcjenaKnjige" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Knjiga">
+              <PropertyRef Name="KnjigaID" />
+            </Principal>
+            <Dependent Role="OcjenaKnjige">
+              <PropertyRef Name="KnjigaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="OcjenaKnjigeKorisnik">
+          <End Role="Korisnik" Type="Self.Korisnik" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="OcjenaKnjige" Type="Self.OcjenaKnjige" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Korisnik">
+              <PropertyRef Name="KorisnikID" />
+            </Principal>
+            <Dependent Role="OcjenaKnjige">
+              <PropertyRef Name="KorisnikID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="OcjenaTekstaKorisnik">
+          <End Role="Korisnik" Type="Self.Korisnik" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="OcjenaTeksta" Type="Self.OcjenaTeksta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Korisnik">
+              <PropertyRef Name="KorisnikID" />
+            </Principal>
+            <Dependent Role="OcjenaTeksta">
+              <PropertyRef Name="KorisnikID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="OcjenaTekstaTekst">
+          <End Role="Tekst" Type="Self.Tekst" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="OcjenaTeksta" Type="Self.OcjenaTeksta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tekst">
+              <PropertyRef Name="TekstID" />
+            </Principal>
+            <Dependent Role="OcjenaTeksta">
+              <PropertyRef Name="TekstID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PretplataAutorKorisnik">
+          <End Role="Korisnik" Type="Self.Korisnik" Multiplicity="1" />
+          <End Role="AutorPretplata" Type="Self.AutorPretplata" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Korisnik">
+              <PropertyRef Name="KorisnikID" />
+            </Principal>
+            <Dependent Role="AutorPretplata">
+              <PropertyRef Name="AutorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PretplataKorisnikAutor">
+          <End Role="Korisnik" Type="Self.Korisnik" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AutorPretplata" Type="Self.AutorPretplata" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Korisnik">
+              <PropertyRef Name="KorisnikID" />
+            </Principal>
+            <Dependent Role="AutorPretplata">
+              <PropertyRef Name="KorisnikID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PretplataKorisnikTema">
+          <End Role="Korisnik" Type="Self.Korisnik" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TemaPretplata" Type="Self.TemaPretplata" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Korisnik">
+              <PropertyRef Name="KorisnikID" />
+            </Principal>
+            <Dependent Role="TemaPretplata">
+              <PropertyRef Name="KorisnikID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PretplataKorisnikVrsta">
+          <End Role="Korisnik" Type="Self.Korisnik" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="VrstaPretplata" Type="Self.VrstaPretplata" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Korisnik">
+              <PropertyRef Name="KorisnikID" />
+            </Principal>
+            <Dependent Role="VrstaPretplata">
+              <PropertyRef Name="KorisnikID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PretplataTemaKorisnik">
+          <End Role="Tema" Type="Self.Tema" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TemaPretplata" Type="Self.TemaPretplata" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tema">
+              <PropertyRef Name="TemaID" />
+            </Principal>
+            <Dependent Role="TemaPretplata">
+              <PropertyRef Name="TemaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PretplataVrstaKorisnik">
+          <End Role="Vrsta" Type="Self.Vrsta" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="VrstaPretplata" Type="Self.VrstaPretplata" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vrsta">
+              <PropertyRef Name="VrstaID" />
+            </Principal>
+            <Dependent Role="VrstaPretplata">
+              <PropertyRef Name="VrstaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TekstBilten">
+          <End Role="Bilten" Type="Self.Bilten" Multiplicity="0..1" />
+          <End Role="Tekst" Type="Self.Tekst" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bilten">
+              <PropertyRef Name="BiltenID" />
+            </Principal>
+            <Dependent Role="Tekst">
+              <PropertyRef Name="BiltenID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TekstTema">
+          <End Role="Tema" Type="Self.Tema" Multiplicity="1" />
+          <End Role="Tekst" Type="Self.Tekst" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tema">
+              <PropertyRef Name="TemaID" />
+            </Principal>
+            <Dependent Role="Tekst">
+              <PropertyRef Name="TemaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TekstVrsta">
+          <End Role="Vrsta" Type="Self.Vrsta" Multiplicity="1" />
+          <End Role="Tekst" Type="Self.Tekst" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vrsta">
+              <PropertyRef Name="VrstaID" />
+            </Principal>
+            <Dependent Role="Tekst">
+              <PropertyRef Name="VrstaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Database1ModelStoreContainer">
+          <EntitySet Name="AutorPretplata" EntityType="Self.AutorPretplata" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Bilten" EntityType="Self.Bilten" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Clanstvo" EntityType="Self.Clanstvo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Knjiga" EntityType="Self.Knjiga" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Komentar" EntityType="Self.Komentar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Korisnik" EntityType="Self.Korisnik" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OcjenaKnjige" EntityType="Self.OcjenaKnjige" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OcjenaTeksta" EntityType="Self.OcjenaTeksta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tekst" EntityType="Self.Tekst" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tema" EntityType="Self.Tema" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TemaPretplata" EntityType="Self.TemaPretplata" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vrsta" EntityType="Self.Vrsta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VrstaPretplata" EntityType="Self.VrstaPretplata" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="ClanstvoKorisnik" Association="Self.ClanstvoKorisnik">
+            <End Role="Korisnik" EntitySet="Korisnik" />
+            <End Role="Clanstvo" EntitySet="Clanstvo" />
+          </AssociationSet>
+          <AssociationSet Name="KnjigaVrsta" Association="Self.KnjigaVrsta">
+            <End Role="Vrsta" EntitySet="Vrsta" />
+            <End Role="Knjiga" EntitySet="Knjiga" />
+          </AssociationSet>
+          <AssociationSet Name="KomentarKorisnik" Association="Self.KomentarKorisnik">
+            <End Role="Korisnik" EntitySet="Korisnik" />
+            <End Role="Komentar" EntitySet="Komentar" />
+          </AssociationSet>
+          <AssociationSet Name="KomentarTekst" Association="Self.KomentarTekst">
+            <End Role="Tekst" EntitySet="Tekst" />
+            <End Role="Komentar" EntitySet="Komentar" />
+          </AssociationSet>
+          <AssociationSet Name="OcjenaKnjigeKnjiga" Association="Self.OcjenaKnjigeKnjiga">
+            <End Role="Knjiga" EntitySet="Knjiga" />
+            <End Role="OcjenaKnjige" EntitySet="OcjenaKnjige" />
+          </AssociationSet>
+          <AssociationSet Name="OcjenaKnjigeKorisnik" Association="Self.OcjenaKnjigeKorisnik">
+            <End Role="Korisnik" EntitySet="Korisnik" />
+            <End Role="OcjenaKnjige" EntitySet="OcjenaKnjige" />
+          </AssociationSet>
+          <AssociationSet Name="OcjenaTekstaKorisnik" Association="Self.OcjenaTekstaKorisnik">
+            <End Role="Korisnik" EntitySet="Korisnik" />
+            <End Role="OcjenaTeksta" EntitySet="OcjenaTeksta" />
+          </AssociationSet>
+          <AssociationSet Name="OcjenaTekstaTekst" Association="Self.OcjenaTekstaTekst">
+            <End Role="Tekst" EntitySet="Tekst" />
+            <End Role="OcjenaTeksta" EntitySet="OcjenaTeksta" />
+          </AssociationSet>
+          <AssociationSet Name="PretplataAutorKorisnik" Association="Self.PretplataAutorKorisnik">
+            <End Role="Korisnik" EntitySet="Korisnik" />
+            <End Role="AutorPretplata" EntitySet="AutorPretplata" />
+          </AssociationSet>
+          <AssociationSet Name="PretplataKorisnikAutor" Association="Self.PretplataKorisnikAutor">
+            <End Role="Korisnik" EntitySet="Korisnik" />
+            <End Role="AutorPretplata" EntitySet="AutorPretplata" />
+          </AssociationSet>
+          <AssociationSet Name="PretplataKorisnikTema" Association="Self.PretplataKorisnikTema">
+            <End Role="Korisnik" EntitySet="Korisnik" />
+            <End Role="TemaPretplata" EntitySet="TemaPretplata" />
+          </AssociationSet>
+          <AssociationSet Name="PretplataKorisnikVrsta" Association="Self.PretplataKorisnikVrsta">
+            <End Role="Korisnik" EntitySet="Korisnik" />
+            <End Role="VrstaPretplata" EntitySet="VrstaPretplata" />
+          </AssociationSet>
+          <AssociationSet Name="PretplataTemaKorisnik" Association="Self.PretplataTemaKorisnik">
+            <End Role="Tema" EntitySet="Tema" />
+            <End Role="TemaPretplata" EntitySet="TemaPretplata" />
+          </AssociationSet>
+          <AssociationSet Name="PretplataVrstaKorisnik" Association="Self.PretplataVrstaKorisnik">
+            <End Role="Vrsta" EntitySet="Vrsta" />
+            <End Role="VrstaPretplata" EntitySet="VrstaPretplata" />
+          </AssociationSet>
+          <AssociationSet Name="TekstBilten" Association="Self.TekstBilten">
+            <End Role="Bilten" EntitySet="Bilten" />
+            <End Role="Tekst" EntitySet="Tekst" />
+          </AssociationSet>
+          <AssociationSet Name="TekstTema" Association="Self.TekstTema">
+            <End Role="Tema" EntitySet="Tema" />
+            <End Role="Tekst" EntitySet="Tekst" />
+          </AssociationSet>
+          <AssociationSet Name="TekstVrsta" Association="Self.TekstVrsta">
+            <End Role="Vrsta" EntitySet="Vrsta" />
+            <End Role="Tekst" EntitySet="Tekst" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Database1Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Bilten">
+          <Key>
+            <PropertyRef Name="BiltenID" />
+          </Key>
+          <Property Name="BiltenID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Datum" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Tekstovi" Relationship="Database1Model.TekstBilten" FromRole="Bilten" ToRole="Tekst" />
+        </EntityType>
+        <EntityType Name="Knjiga">
+          <Key>
+            <PropertyRef Name="KnjigaID" />
+          </Key>
+          <Property Name="KnjigaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Autori" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Naslov" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Signatura" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Izdavac" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Godina" Type="Int16" Nullable="false" />
+          <Property Name="VrstaID" Type="Int32" Nullable="false" />
+          <Property Name="SrednjaOcjena" Type="Double" Nullable="false" />
+          <NavigationProperty Name="OcjeneKnjiga" Relationship="Self.OcjenaKnjigeKnjiga" FromRole="Knjiga" ToRole="OcjenaKnjige" />
+          <NavigationProperty Name="Vrsta" Relationship="Database1Model.KnjigaVrsta" FromRole="Knjiga" ToRole="Vrsta" />
+        </EntityType>
+        <EntityType Name="Komentar">
+          <Key>
+            <PropertyRef Name="KomentarID" />
+          </Key>
+          <Property Name="KomentarID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KorisnikID" Type="Int32" Nullable="false" />
+          <Property Name="TekstID" Type="Int32" Nullable="false" />
+          <Property Name="Sadrzaj" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DatumVrijeme" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Korisnik" Relationship="Self.KomentarKorisnik" FromRole="Komentar" ToRole="Korisnik" />
+          <NavigationProperty Name="Tekst" Relationship="Database1Model.KomentarTekst" FromRole="Komentar" ToRole="Tekst" />
+        </EntityType>
+        <EntityType Name="Korisnik">
+          <Key>
+            <PropertyRef Name="KorisnikID" />
+          </Key>
+          <Property Name="KorisnikID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Prezime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DatumRod" Type="DateTime" Precision="0" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Spol" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Komentari" Relationship="Self.KomentarKorisnik" FromRole="Korisnik" ToRole="Komentar" />
+          <NavigationProperty Name="OcjeneKnjiga" Relationship="Self.OcjenaKnjigeKorisnik" FromRole="Korisnik" ToRole="OcjenaKnjige" />
+          <NavigationProperty Name="OcjeneTekstova" Relationship="Self.OcjenaTekstaKorisnik" FromRole="Korisnik" ToRole="OcjenaTeksta" />
+          <NavigationProperty Name="Pretplaceni" Relationship="Self.AutorPretplata" FromRole="Korisnik" ToRole="Korisnik1" />
+          <NavigationProperty Name="Autori" Relationship="Self.AutorPretplata" FromRole="Korisnik1" ToRole="Korisnik" />
+          <NavigationProperty Name="Tekstovi" Relationship="Database1Model.TekstKorisnik" FromRole="Korisnik" ToRole="Tekst" />
+          <NavigationProperty Name="Teme" Relationship="Database1Model.TemaPretplata" FromRole="Korisnik" ToRole="Tema" />
+          <NavigationProperty Name="Vrste" Relationship="Database1Model.VrstaPretplata" FromRole="Korisnik" ToRole="Vrsta" />
+          <NavigationProperty Name="Clanstva" Relationship="Database1Model.ClanstvoKorisnik" FromRole="Korisnik" ToRole="Clanstvo" />
+          <Property Name="KorisnickoIme" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Autor" Type="Boolean" Nullable="false" />
+          </EntityType>
+        <EntityType Name="OcjenaKnjige">
+          <Key>
+            <PropertyRef Name="KnjigaID" />
+            <PropertyRef Name="KorisnikID" />
+          </Key>
+          <Property Name="KnjigaID" Type="Int32" Nullable="false" />
+          <Property Name="KorisnikID" Type="Int32" Nullable="false" />
+          <Property Name="Ocjena" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Knjiga" Relationship="Self.OcjenaKnjigeKnjiga" FromRole="OcjenaKnjige" ToRole="Knjiga" />
+          <NavigationProperty Name="Korisnik" Relationship="Self.OcjenaKnjigeKorisnik" FromRole="OcjenaKnjige" ToRole="Korisnik" />
+        </EntityType>
+        <EntityType Name="OcjenaTeksta">
+          <Key>
+            <PropertyRef Name="TekstID" />
+            <PropertyRef Name="KorisnikID" />
+          </Key>
+          <Property Name="TekstID" Type="Int32" Nullable="false" />
+          <Property Name="KorisnikID" Type="Int32" Nullable="false" />
+          <Property Name="Ocjena" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Korisnik" Relationship="Self.OcjenaTekstaKorisnik" FromRole="OcjenaTeksta" ToRole="Korisnik" />
+          <NavigationProperty Name="Tekst" Relationship="Database1Model.OcjenaTekstaTekst" FromRole="OcjenaTeksta" ToRole="Tekst" />
+        </EntityType>
+        <Association Name="OcjenaKnjigeKnjiga">
+          <End Role="Knjiga" Type="Self.Knjiga" Multiplicity="1" />
+          <End Role="OcjenaKnjige" Type="Self.OcjenaKnjige" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Knjiga">
+              <PropertyRef Name="KnjigaID" />
+            </Principal>
+            <Dependent Role="OcjenaKnjige">
+              <PropertyRef Name="KnjigaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="KomentarKorisnik">
+          <End Role="Korisnik" Type="Self.Korisnik" Multiplicity="1" />
+          <End Role="Komentar" Type="Self.Komentar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Korisnik">
+              <PropertyRef Name="KorisnikID" />
+            </Principal>
+            <Dependent Role="Komentar">
+              <PropertyRef Name="KorisnikID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="OcjenaKnjigeKorisnik">
+          <End Role="Korisnik" Type="Self.Korisnik" Multiplicity="1" />
+          <End Role="OcjenaKnjige" Type="Self.OcjenaKnjige" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Korisnik">
+              <PropertyRef Name="KorisnikID" />
+            </Principal>
+            <Dependent Role="OcjenaKnjige">
+              <PropertyRef Name="KorisnikID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="OcjenaTekstaKorisnik">
+          <End Role="Korisnik" Type="Self.Korisnik" Multiplicity="1" />
+          <End Role="OcjenaTeksta" Type="Self.OcjenaTeksta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Korisnik">
+              <PropertyRef Name="KorisnikID" />
+            </Principal>
+            <Dependent Role="OcjenaTeksta">
+              <PropertyRef Name="KorisnikID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AutorPretplata">
+          <End Role="Korisnik" Type="Self.Korisnik" Multiplicity="*" />
+          <End Role="Korisnik1" Type="Self.Korisnik" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="DatabaseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Bilteni" EntityType="Self.Bilten" />
+          <EntitySet Name="Knjige" EntityType="Self.Knjiga" />
+          <EntitySet Name="Komentari" EntityType="Self.Komentar" />
+          <EntitySet Name="Korisnici" EntityType="Self.Korisnik" />
+          <EntitySet Name="OcjeneKnjiga" EntityType="Self.OcjenaKnjige" />
+          <EntitySet Name="OcjeneTekstova" EntityType="Self.OcjenaTeksta" />
+          <AssociationSet Name="OcjenaKnjigeKnjiga" Association="Self.OcjenaKnjigeKnjiga">
+            <End Role="Knjiga" EntitySet="Knjige" />
+            <End Role="OcjenaKnjige" EntitySet="OcjeneKnjiga" />
+          </AssociationSet>
+          <AssociationSet Name="KomentarKorisnik" Association="Self.KomentarKorisnik">
+            <End Role="Korisnik" EntitySet="Korisnici" />
+            <End Role="Komentar" EntitySet="Komentari" />
+          </AssociationSet>
+          <AssociationSet Name="OcjenaKnjigeKorisnik" Association="Self.OcjenaKnjigeKorisnik">
+            <End Role="Korisnik" EntitySet="Korisnici" />
+            <End Role="OcjenaKnjige" EntitySet="OcjeneKnjiga" />
+          </AssociationSet>
+          <AssociationSet Name="OcjenaTekstaKorisnik" Association="Self.OcjenaTekstaKorisnik">
+            <End Role="Korisnik" EntitySet="Korisnici" />
+            <End Role="OcjenaTeksta" EntitySet="OcjeneTekstova" />
+          </AssociationSet>
+          <AssociationSet Name="AutorPretplata" Association="Self.AutorPretplata">
+            <End Role="Korisnik" EntitySet="Korisnici" />
+            <End Role="Korisnik1" EntitySet="Korisnici" />
+          </AssociationSet>
+          <EntitySet Name="Tekstovi" EntityType="Database1Model.Tekst" />
+          <EntitySet Name="Teme" EntityType="Database1Model.Tema" />
+          <EntitySet Name="Vrste" EntityType="Database1Model.Vrsta" />
+          <AssociationSet Name="TekstBilten" Association="Database1Model.TekstBilten">
+            <End Role="Bilten" EntitySet="Bilteni" />
+            <End Role="Tekst" EntitySet="Tekstovi" />
+          </AssociationSet>
+          <AssociationSet Name="KnjigaVrsta" Association="Database1Model.KnjigaVrsta">
+            <End Role="Vrsta" EntitySet="Vrste" />
+            <End Role="Knjiga" EntitySet="Knjige" />
+          </AssociationSet>
+          <AssociationSet Name="KomentarTekst" Association="Database1Model.KomentarTekst">
+            <End Role="Tekst" EntitySet="Tekstovi" />
+            <End Role="Komentar" EntitySet="Komentari" />
+          </AssociationSet>
+          <AssociationSet Name="TekstKorisnik" Association="Database1Model.TekstKorisnik">
+            <End Role="Korisnik" EntitySet="Korisnici" />
+            <End Role="Tekst" EntitySet="Tekstovi" />
+          </AssociationSet>
+          <AssociationSet Name="OcjenaTekstaTekst" Association="Database1Model.OcjenaTekstaTekst">
+            <End Role="Tekst" EntitySet="Tekstovi" />
+            <End Role="OcjenaTeksta" EntitySet="OcjeneTekstova" />
+          </AssociationSet>
+          <AssociationSet Name="TekstTema" Association="Database1Model.TekstTema">
+            <End Role="Tema" EntitySet="Teme" />
+            <End Role="Tekst" EntitySet="Tekstovi" />
+          </AssociationSet>
+          <AssociationSet Name="TekstVrsta" Association="Database1Model.TekstVrsta">
+            <End Role="Vrsta" EntitySet="Vrste" />
+            <End Role="Tekst" EntitySet="Tekstovi" />
+          </AssociationSet>
+          <AssociationSet Name="TemaPretplata" Association="Database1Model.TemaPretplata">
+            <End Role="Korisnik" EntitySet="Korisnici" />
+            <End Role="Tema" EntitySet="Teme" />
+          </AssociationSet>
+          <AssociationSet Name="VrstaPretplata" Association="Database1Model.VrstaPretplata">
+            <End Role="Korisnik" EntitySet="Korisnici" />
+            <End Role="Vrsta" EntitySet="Vrste" />
+          </AssociationSet>
+          <EntitySet Name="Clanstva" EntityType="Database1Model.Clanstvo" />
+          <AssociationSet Name="ClanstvoKorisnik" Association="Database1Model.ClanstvoKorisnik">
+            <End Role="Korisnik" EntitySet="Korisnici" />
+            <End Role="Clanstvo" EntitySet="Clanstva" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="Tekst">
+          <Key>
+            <PropertyRef Name="TekstID" />
+          </Key>
+          <Property Name="TekstID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Sadrzaj" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Naslov" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AutorID" Type="Int32" Nullable="false" />
+          <Property Name="TemaID" Type="Int32" Nullable="false" />
+          <Property Name="VrstaID" Type="Int32" Nullable="false" />
+          <Property Name="DatumVrijeme" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="SrednjaOcjena" Type="Double" Nullable="false" />
+          <Property Name="BiltenID" Type="Int32" />
+          <Property Name="Privatan" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Bilten" Relationship="Database1Model.TekstBilten" FromRole="Tekst" ToRole="Bilten" />
+          <NavigationProperty Name="Komentari" Relationship="Database1Model.KomentarTekst" FromRole="Tekst" ToRole="Komentar" />
+          <NavigationProperty Name="Korisnik" Relationship="Database1Model.TekstKorisnik" FromRole="Tekst" ToRole="Korisnik" />
+          <NavigationProperty Name="OcjeneTekstova" Relationship="Database1Model.OcjenaTekstaTekst" FromRole="Tekst" ToRole="OcjenaTeksta" />
+          <NavigationProperty Name="Tema" Relationship="Database1Model.TekstTema" FromRole="Tekst" ToRole="Tema" />
+          <NavigationProperty Name="Vrsta" Relationship="Database1Model.TekstVrsta" FromRole="Tekst" ToRole="Vrsta" />
+          <Property Name="Objavljen" Type="Boolean" Nullable="false" />
+          <Property Name="LektorovKomentar" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Odabran" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tema">
+          <Key>
+            <PropertyRef Name="TemaID" />
+          </Key>
+          <Property Name="TemaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Naziv" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Tekstovi" Relationship="Database1Model.TekstTema" FromRole="Tema" ToRole="Tekst" />
+          <NavigationProperty Name="Korisnici" Relationship="Database1Model.TemaPretplata" FromRole="Tema" ToRole="Korisnik" />
+        </EntityType>
+        <EntityType Name="Vrsta">
+          <Key>
+            <PropertyRef Name="VrstaID" />
+          </Key>
+          <Property Name="VrstaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Naziv" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Knjige" Relationship="Database1Model.KnjigaVrsta" FromRole="Vrsta" ToRole="Knjiga" />
+          <NavigationProperty Name="Tekstovi" Relationship="Database1Model.TekstVrsta" FromRole="Vrsta" ToRole="Tekst" />
+          <NavigationProperty Name="Korisnici" Relationship="Database1Model.VrstaPretplata" FromRole="Vrsta" ToRole="Korisnik" />
+        </EntityType>
+        <Association Name="TekstBilten">
+          <End Type="Database1Model.Bilten" Role="Bilten" Multiplicity="0..1" />
+          <End Type="Database1Model.Tekst" Role="Tekst" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bilten">
+              <PropertyRef Name="BiltenID" />
+            </Principal>
+            <Dependent Role="Tekst">
+              <PropertyRef Name="BiltenID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="KnjigaVrsta">
+          <End Type="Database1Model.Vrsta" Role="Vrsta" Multiplicity="1" />
+          <End Type="Database1Model.Knjiga" Role="Knjiga" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vrsta">
+              <PropertyRef Name="VrstaID" />
+            </Principal>
+            <Dependent Role="Knjiga">
+              <PropertyRef Name="VrstaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="KomentarTekst">
+          <End Type="Database1Model.Tekst" Role="Tekst" Multiplicity="1" />
+          <End Type="Database1Model.Komentar" Role="Komentar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tekst">
+              <PropertyRef Name="TekstID" />
+            </Principal>
+            <Dependent Role="Komentar">
+              <PropertyRef Name="TekstID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TekstKorisnik">
+          <End Type="Database1Model.Korisnik" Role="Korisnik" Multiplicity="1" />
+          <End Type="Database1Model.Tekst" Role="Tekst" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Korisnik">
+              <PropertyRef Name="KorisnikID" />
+            </Principal>
+            <Dependent Role="Tekst">
+              <PropertyRef Name="AutorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="OcjenaTekstaTekst">
+          <End Type="Database1Model.Tekst" Role="Tekst" Multiplicity="1" />
+          <End Type="Database1Model.OcjenaTeksta" Role="OcjenaTeksta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tekst">
+              <PropertyRef Name="TekstID" />
+            </Principal>
+            <Dependent Role="OcjenaTeksta">
+              <PropertyRef Name="TekstID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TekstTema">
+          <End Type="Database1Model.Tema" Role="Tema" Multiplicity="1" />
+          <End Type="Database1Model.Tekst" Role="Tekst" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tema">
+              <PropertyRef Name="TemaID" />
+            </Principal>
+            <Dependent Role="Tekst">
+              <PropertyRef Name="TemaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TekstVrsta">
+          <End Type="Database1Model.Vrsta" Role="Vrsta" Multiplicity="1" />
+          <End Type="Database1Model.Tekst" Role="Tekst" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vrsta">
+              <PropertyRef Name="VrstaID" />
+            </Principal>
+            <Dependent Role="Tekst">
+              <PropertyRef Name="VrstaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TemaPretplata">
+          <End Type="Database1Model.Korisnik" Role="Korisnik" Multiplicity="*" />
+          <End Type="Database1Model.Tema" Role="Tema" Multiplicity="*" />
+        </Association>
+        <Association Name="VrstaPretplata">
+          <End Type="Database1Model.Korisnik" Role="Korisnik" Multiplicity="*" />
+          <End Type="Database1Model.Vrsta" Role="Vrsta" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Clanstvo">
+          <Key>
+            <PropertyRef Name="ClanstvoID" />
+            <PropertyRef Name="KorisnikID" />
+          </Key>
+          <Property Name="ClanstvoID" Type="Int32" Nullable="false" />
+          <Property Name="KorisnikID" Type="Int32" Nullable="false" />
+          <Property Name="DatumPlat" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DatumIstek" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Korisnik" Relationship="Database1Model.ClanstvoKorisnik" FromRole="Clanstvo" ToRole="Korisnik" />
+        </EntityType>
+        <Association Name="ClanstvoKorisnik">
+          <End Type="Database1Model.Korisnik" Role="Korisnik" Multiplicity="1" />
+          <End Type="Database1Model.Clanstvo" Role="Clanstvo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Korisnik">
+              <PropertyRef Name="KorisnikID" />
+            </Principal>
+            <Dependent Role="Clanstvo">
+              <PropertyRef Name="KorisnikID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Database1ModelStoreContainer" CdmEntityContainer="DatabaseEntities">
+          <EntitySetMapping Name="Bilteni">
+            <EntityTypeMapping TypeName="Database1Model.Bilten">
+              <MappingFragment StoreEntitySet="Bilten">
+                <ScalarProperty Name="BiltenID" ColumnName="BiltenID" />
+                <ScalarProperty Name="Datum" ColumnName="Datum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Knjige">
+            <EntityTypeMapping TypeName="Database1Model.Knjiga">
+              <MappingFragment StoreEntitySet="Knjiga">
+                <ScalarProperty Name="KnjigaID" ColumnName="KnjigaID" />
+                <ScalarProperty Name="Autori" ColumnName="Autori" />
+                <ScalarProperty Name="Naslov" ColumnName="Naslov" />
+                <ScalarProperty Name="Signatura" ColumnName="Signatura" />
+                <ScalarProperty Name="Izdavac" ColumnName="Izdavac" />
+                <ScalarProperty Name="Godina" ColumnName="Godina" />
+                <ScalarProperty Name="VrstaID" ColumnName="VrstaID" />
+                <ScalarProperty Name="SrednjaOcjena" ColumnName="SrednjaOcjena" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Komentari">
+            <EntityTypeMapping TypeName="Database1Model.Komentar">
+              <MappingFragment StoreEntitySet="Komentar">
+                <ScalarProperty Name="KomentarID" ColumnName="KomentarID" />
+                <ScalarProperty Name="KorisnikID" ColumnName="KorisnikID" />
+                <ScalarProperty Name="TekstID" ColumnName="TekstID" />
+                <ScalarProperty Name="Sadrzaj" ColumnName="Sadrzaj" />
+                <ScalarProperty Name="DatumVrijeme" ColumnName="DatumVrijeme" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Korisnici">
+            <EntityTypeMapping TypeName="Database1Model.Korisnik">
+              <MappingFragment StoreEntitySet="Korisnik">
+                <ScalarProperty Name="Autor" ColumnName="Autor" />
+                <ScalarProperty Name="KorisnickoIme" ColumnName="KorisnickoIme" />
+                <ScalarProperty Name="KorisnikID" ColumnName="KorisnikID" />
+                <ScalarProperty Name="Ime" ColumnName="Ime" />
+                <ScalarProperty Name="Prezime" ColumnName="Prezime" />
+                <ScalarProperty Name="DatumRod" ColumnName="DatumRod" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Spol" ColumnName="Spol" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OcjeneKnjiga">
+            <EntityTypeMapping TypeName="Database1Model.OcjenaKnjige">
+              <MappingFragment StoreEntitySet="OcjenaKnjige">
+                <ScalarProperty Name="KnjigaID" ColumnName="KnjigaID" />
+                <ScalarProperty Name="KorisnikID" ColumnName="KorisnikID" />
+                <ScalarProperty Name="Ocjena" ColumnName="Ocjena" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OcjeneTekstova">
+            <EntityTypeMapping TypeName="Database1Model.OcjenaTeksta">
+              <MappingFragment StoreEntitySet="OcjenaTeksta">
+                <ScalarProperty Name="TekstID" ColumnName="TekstID" />
+                <ScalarProperty Name="KorisnikID" ColumnName="KorisnikID" />
+                <ScalarProperty Name="Ocjena" ColumnName="Ocjena" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="AutorPretplata" TypeName="Database1Model.AutorPretplata" StoreEntitySet="AutorPretplata">
+            <EndProperty Name="Korisnik">
+              <ScalarProperty Name="KorisnikID" ColumnName="AutorID" />
+            </EndProperty>
+            <EndProperty Name="Korisnik1">
+              <ScalarProperty Name="KorisnikID" ColumnName="KorisnikID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="Tekstovi">
+            <EntityTypeMapping TypeName="Database1Model.Tekst">
+              <MappingFragment StoreEntitySet="Tekst">
+                <ScalarProperty Name="Odabran" ColumnName="Odabran" />
+                <ScalarProperty Name="LektorovKomentar" ColumnName="LektorovKomentar" />
+                <ScalarProperty Name="Objavljen" ColumnName="Objavljen" />
+                <ScalarProperty Name="Privatan" ColumnName="Privatan" />
+                <ScalarProperty Name="BiltenID" ColumnName="BiltenID" />
+                <ScalarProperty Name="SrednjaOcjena" ColumnName="SrednjaOcjena" />
+                <ScalarProperty Name="DatumVrijeme" ColumnName="DatumVrijeme" />
+                <ScalarProperty Name="VrstaID" ColumnName="VrstaID" />
+                <ScalarProperty Name="TemaID" ColumnName="TemaID" />
+                <ScalarProperty Name="AutorID" ColumnName="AutorID" />
+                <ScalarProperty Name="Naslov" ColumnName="Naslov" />
+                <ScalarProperty Name="Sadrzaj" ColumnName="Sadrzaj" />
+                <ScalarProperty Name="TekstID" ColumnName="TekstID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Teme">
+            <EntityTypeMapping TypeName="Database1Model.Tema">
+              <MappingFragment StoreEntitySet="Tema">
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+                <ScalarProperty Name="TemaID" ColumnName="TemaID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vrste">
+            <EntityTypeMapping TypeName="Database1Model.Vrsta">
+              <MappingFragment StoreEntitySet="Vrsta">
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+                <ScalarProperty Name="VrstaID" ColumnName="VrstaID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="TemaPretplata" TypeName="Database1Model.TemaPretplata" StoreEntitySet="TemaPretplata">
+            <EndProperty Name="Tema">
+              <ScalarProperty Name="TemaID" ColumnName="TemaID" />
+            </EndProperty>
+            <EndProperty Name="Korisnik">
+              <ScalarProperty Name="KorisnikID" ColumnName="KorisnikID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="VrstaPretplata" TypeName="Database1Model.VrstaPretplata" StoreEntitySet="VrstaPretplata">
+            <EndProperty Name="Vrsta">
+              <ScalarProperty Name="VrstaID" ColumnName="VrstaID" />
+            </EndProperty>
+            <EndProperty Name="Korisnik">
+              <ScalarProperty Name="KorisnikID" ColumnName="KorisnikID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="Clanstva">
+            <EntityTypeMapping TypeName="Database1Model.Clanstvo">
+              <MappingFragment StoreEntitySet="Clanstvo">
+                <ScalarProperty Name="DatumIstek" ColumnName="DatumIstek" />
+                <ScalarProperty Name="DatumPlat" ColumnName="DatumPlat" />
+                <ScalarProperty Name="KorisnikID" ColumnName="KorisnikID" />
+                <ScalarProperty Name="ClanstvoID" ColumnName="ClanstvoID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewBag.Title = "Membership";
+}
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h1>Načini pretplate:</h1>
+        <select name="Pretplata">
+            <option value="month">
+                Mjesečno
+            </option>
+            <option value="year">
+                Godišnje
+            </option>
+        </select>
+        <span>
+            <!--dodati onclick na gumb da bude koristan ;) .-->
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Potvrdi" class="btn btn-default" style="border-color:#c62828  ; background-color:#b71c1c ; border-radius:3px ; color:white" />
+                </div>
+            </div>
+            <!--style="border-color:#c62828  ; background-color:#b71c1c ; border-radius:3px"-->
+        </span>
+    </div>
+}
+
+
+

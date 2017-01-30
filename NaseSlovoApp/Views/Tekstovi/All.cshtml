@@ -1,0 +1,80 @@
+﻿@model PagedList.IPagedList<NaseSlovoApp.Models.Tekst>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "All";
+}
+
+<div class="container-fluid text-center">
+        <div class="col-sm-8 page-content">
+            <!--Ovdje ubaciti for petlju i povući članke iz baze-->
+
+            @foreach (var item in Model)
+                {
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="panel panel-default panel-horizontal">
+                                <div class="panel-body">
+                                    <div>
+                                        <img class="profile-small" src="http://www.pngall.com/wp-content/uploads/2016/05/Pen.png">
+                                        @Html.ActionLink(item.Korisnik.Ime+" "+item.Korisnik.Prezime, "Details", "Korisnici", new { id = item.Korisnik.KorisnikID }, null)
+                                        <span class="date">@Html.DisplayFor(modelItem => item.DatumVrijeme)</span>
+                                    </div>
+                                    <div>
+                                        <a class="panel-title" href="#">@Html.DisplayFor(modelItem => item.Naslov)</a>
+                                    </div>
+                                    <button type="button" class="btn btn-outline btn-primary">@Html.DisplayFor(modelItem => item.Tema.Naziv)</button>
+                                    <button type="button" class="btn btn-outline btn-primary">@Html.DisplayFor(modelItem => item.Vrsta.Naziv)</button>
+                                    <hr>
+                                    @Html.DisplayFor(modelItem => item.Sadrzaj)
+                                    @Html.ActionLink("Procitaj tekst", "Details", "Tekstovi", new { id = item.TekstID }, null)
+                                </div>
+                                <div class="panel-footer">
+                                    <span class="score">@Html.DisplayFor(modelItem => item.SrednjaOcjena)/10</span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                }
+            <!--Poboljsati footer-->
+            <footer style="background-color:rgba(0,0,0,0)">
+                Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+                @Html.PagedListPager(Model, page => Url.Action("Index", new { page, searchString = ViewBag.SearchString }))
+                
+            </footer>
+
+
+        </div>
+    </div>
+
+
+<script type="text/javascript">
+
+  var element_position = $('.sideright').offset().top;
+  var is_fixed = false;
+  $('#close-not').click(function () {
+    $('.navbar-notification').remove();
+  });
+
+  $(window).on('scroll', function() {
+      var y_scroll_pos = window.pageYOffset;
+      var scroll_pos_test = element_position;
+
+      if(y_scroll_pos > scroll_pos_test && is_fixed == false) {
+
+
+          $('.side-fixed-off').attr('class','side-fixed');
+          is_fixed = true;
+
+      }
+      if(y_scroll_pos < scroll_pos_test && is_fixed == true) {
+          $('.side-fixed').attr('class','side-fixed-off');
+          is_fixed = false;
+      }
+  });
+
+</script>
+

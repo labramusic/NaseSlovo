@@ -1,0 +1,74 @@
+﻿@model NaseSlovoApp.Models.Knjiga
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Knjiga</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Autori)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Autori)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Naslov)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Naslov)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Signatura)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Signatura)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Izdavac)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Izdavac)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Godina)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Godina)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SrednjaOcjena)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SrednjaOcjena)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Vrsta.Naziv)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Vrsta.Naziv)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.KnjigaID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

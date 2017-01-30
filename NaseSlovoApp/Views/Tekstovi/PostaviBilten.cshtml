@@ -1,0 +1,15 @@
+﻿
+@{
+    ViewBag.Title = "PostaviBilten";
+}
+
+<h2>PostaviBilten</h2>
+
+<div>
+    @using (Html.BeginForm("PostaviBilten", "Tekstovi", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <input type="File" name="file" id="file" value="Izaberite datoteku" />
+        <button type="submit">Upload</button>
+    }
+</div>
+
