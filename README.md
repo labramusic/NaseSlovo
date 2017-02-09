@@ -4,3 +4,4 @@ Ova aplikacija je nastala kao rezultat rada na projektnom zadatku predmeta "Obli
 Aplikacija je izgrađena u ASP.NET frameworku, a komunicira s lokalnom bazom podataka korištenjem Entity frameworka i ORM-a. Koristili sam Database-first pristup zbog zadanih projektnih zahtjeva koji su zahtjevali da najprije bude izgrađena baza podataka. Zbog ograničenosti vremenom pri izradi projekta, pri oblikovanju se zadržao nedostatak korištenja dodatne baze za čuvanje podataka o autentifikaciji korisnika u sustavu i korisničkih uloga. Pri dizajnu front-enda korišten je Bootstrap.
 
 Čitava projektna dokumentacija dostupna je u datoteci "Dokumentacija.pdf".
+Projekt je rezultat rada Mladena Petra (https://github.com/mlaggi0) i Luke Abramušića (https://github.com/labramusic).
